@@ -2,6 +2,6 @@ package example
 
 import "fmt"
 
-func Print() {
-	fmt.Println("Hello World!")
+func Print(msg string) {
+	fmt.Println(msg)
 }

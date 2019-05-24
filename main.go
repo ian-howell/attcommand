@@ -8,7 +8,8 @@ import (
 )
 
 func main() {
-	rootCmd, _ := cmd.NewRootCmd(os.Stdout)
-	rootCmd.AddCommand(example.NewExampleCommand(os.Stdout, os.Args[1:]))
+	rootCmd, settings, _ := cmd.NewRootCmd(os.Stdout)
+	rootCmd.AddCommand(example.NewExampleCommand(os.Stdout, settings))
+	settings.Init()
 	rootCmd.Execute()
 }
