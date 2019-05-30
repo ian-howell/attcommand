@@ -1,7 +1,10 @@
 package example
 
-import "fmt"
+import (
+	"fmt"
+	"io"
+)
 
-func Print(msg string) {
+func Fprint(out io.Writer, msg string) {
 	fmt.Println(msg)
 }
