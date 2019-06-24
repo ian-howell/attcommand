@@ -5,20 +5,23 @@ import (
 
 	"github.com/ian-howell/airshipctl/cmd"
 	// "github.com/ian-howell/airshipctl/cmd/bootstrap"
-	// "github.com/ian-howell/airshipctl/cmd/workflow"
 	example "github.com/ian-howell/exampleplugin/cmd"
 )
 
 func main() {
-	rootCmd, settings, _ := cmd.NewRootCmd(os.Stdout)
+	// Choose one of these
+	// 1. Creates an airshipctl with all of the default commands
+	rootCmd, settings, _ := cmd.NewAirshipCTLCommand(os.Stdout)
+	// 2. Creates a bare-bones variant of airshipctl, allowing the user to
+	// pick and choose which subcommands he wants
+	// rootCmd, settings, _ := cmd.NewRootCmd(os.Stdout)
+
+	// This line adds the "plugin"
 	rootCmd.AddCommand(example.NewExampleCommand(settings))
 
-	// Optional - adds all of the default commands
-	// cmd.AddDefaultAirshipCTLCommands(rootCmd, settings)
-
-	// Optional - Pick and choose desired commands
+	// Optional - Pick and choose desired commands - Only necessary if
+	// option 2 was used for root command creation
 	// rootCmd.AddCommand(bootstrap.NewBootstrapCommand(settings))
-	// rootCmd.AddCommand(workflow.NewWorkflowCommand(settings))
 
 	rootCmd.Execute()
 }

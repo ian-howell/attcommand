@@ -8,10 +8,11 @@ import (
 	"github.com/ian-howell/exampleplugin/pkg/example"
 )
 
-const PluginSettingsID = "example"
-
 func NewExampleCommand(rootSettings *rootenv.AirshipCTLSettings) *cobra.Command {
-	exampleSettings := &env.Settings{}
+	exampleSettings := &env.Settings{
+		AirshipCTLSettings: rootSettings,
+		Message: "Hello World",
+	}
 	exampleCommand := &cobra.Command{
 		Use:   "example",
 		Short: "an example plugin",
@@ -20,7 +21,5 @@ func NewExampleCommand(rootSettings *rootenv.AirshipCTLSettings) *cobra.Command 
 			example.Fprint(out, exampleSettings.Message)
 		},
 	}
-	exampleSettings.Init()
-	rootSettings.Register(PluginSettingsID, exampleSettings)
 	return exampleCommand
 }

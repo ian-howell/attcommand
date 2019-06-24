@@ -1,10 +1,11 @@
 package env
 
-type Settings struct {
-	Message string
-}
+import (
+	rootenv "github.com/ian-howell/airshipctl/pkg/environment"
+)
 
-func (s *Settings) Init() error {
-	s.Message = "Hello World"
-	return nil
+type Settings struct {
+	*rootenv.AirshipCTLSettings
+
+	Message string
 }
